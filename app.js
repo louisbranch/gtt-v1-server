@@ -21,6 +21,11 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.post('/tasks', tasks.index);
+
+// Tasks
+app.post('/tasks', tasks.create);
+app.put('/tasks', tasks.update);
+
+// Days Stats Log Users
 
 http.createServer(app).listen(app.get('port'));
