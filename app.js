@@ -1,5 +1,6 @@
 var express = require('express')
   , routes = require('./routes')
+  , projects = require('./routes/projects')
   , tasks = require('./routes/tasks')
   , http = require('http');
 
@@ -18,6 +19,9 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+
+// Projects
+app.post('/projects', projects.create);
 
 // Tasks
 app.post('/tasks', tasks.create);
