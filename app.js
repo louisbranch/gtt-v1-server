@@ -18,7 +18,6 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
 
 // Projects
 app.post('/projects', projects.create);
