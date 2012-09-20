@@ -1,7 +1,8 @@
 var projects = require('../lib/projects');
 
 exports.create = function(req, res){
-  projects.createProject(function(newProject){
-    res.send(newProject.id);
+  var id = req.params.id;
+  projects.createProject(id, function(response){
+    res.send(response);
   });
 };

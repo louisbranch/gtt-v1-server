@@ -18,9 +18,8 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-
 // Projects
-app.post('/projects', projects.create);
+app.put('/projects/:id', projects.create);
 
 // Tasks
 app.post('/tasks', tasks.create);
