@@ -1,8 +1,9 @@
 var express = require('express')
+  , http = require('http')
   , routes = require('./routes')
+  , days = require('./routes/days')
   , projects = require('./routes/projects')
-  , tasks = require('./routes/tasks')
-  , http = require('http');
+  , tasks = require('./routes/tasks');
 
 var app = express();
 
@@ -20,6 +21,10 @@ app.configure('development', function(){
 
 // Projects
 app.put('/projects/:id', projects.create);
+
+// Days
+app.post('/projects/:id/days', days.create);
+app.put('/projects/:id/days', days.update);
 
 // Tasks
 app.post('/tasks', tasks.create);
