@@ -23,7 +23,6 @@ app.configure('development', function(){
 app.put('/projects/:id', projects.create);
 
 // Days
-app.post('/projects/:id/days', days.create);
 app.put('/projects/:id/days/:date', days.update);
 
 // Tasks

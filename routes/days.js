@@ -1,19 +1,20 @@
 var days = require('../lib/days')
 
-exports.create = function(req, res){
-  var id = req.params.id;
-  var date = req.body.date;
-  var time = req.body.time;
-  days.createDay(id, date, time, function(response){
-    res.send(response);
-  });
-};
-
 exports.update = function(req, res){
-  var id = req.params.id;
-  var date = req.params.date;
-  var time = req.body.time;
-  days.finishDay(id, date, time, function(response){
-    res.send(response);
-  });
+  var id = req.params.id
+  , date = req.params.date
+  , start = req.body.start
+  , end = req.body.end;
+
+  if (start){
+    days.createDay(id, date, start, function(response){
+      res.send(response);
+    });
+  } else if (end) {
+    days.finishDay(id, date, end, function(response){
+      res.send(response);
+    });
+  } else {
+    res.send({error: true, message: 'Unknown action'})
+  }
 };
