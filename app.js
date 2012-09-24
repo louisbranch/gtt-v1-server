@@ -24,7 +24,7 @@ app.put('/projects/:id', projects.create);
 
 // Days
 app.post('/projects/:id/days', days.create);
-app.put('/projects/:id/days', days.update);
+app.put('/projects/:id/days/:date', days.update);
 
 // Tasks
 app.post('/tasks', tasks.create);
