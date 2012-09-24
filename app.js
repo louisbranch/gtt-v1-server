@@ -19,15 +19,9 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-// Projects
 app.put('/projects/:id', projects.create);
-
-// Days
 app.put('/projects/:id/days/:date', days.update);
-
-// Tasks
-app.post('/tasks', tasks.create);
-app.put('/tasks', tasks.update);
+app.post('/projects/:id/days/:date/tasks', tasks.create);
 
 // Days Stats Log Users
 

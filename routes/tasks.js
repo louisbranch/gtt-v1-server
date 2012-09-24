@@ -1,7 +1,11 @@
-exports.create = function(req, res){
-  res.send(req.body);
-};
+var tasks = require('../lib/tasks');
 
-exports.update = function(req, res){
-  res.send(req.body);
+exports.create = function(req, res){
+  var id = req.params.id
+  , date = req.params.date
+  , params = req.body;
+
+  tasks.create(id, params, date, function(response){
+    res.send(response);
+  });
 };
