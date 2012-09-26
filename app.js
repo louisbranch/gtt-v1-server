@@ -3,6 +3,7 @@ var express = require('express')
   , routes = require('./routes')
   , days = require('./routes/days')
   , projects = require('./routes/projects')
+  , stats = require('./routes/stats')
   , tasks = require('./routes/tasks');
 
 var app = express();
@@ -20,6 +21,7 @@ app.configure('development', function(){
 });
 
 app.put('/projects/:id', projects.create);
+app.get('/projects/:id/days/:date', stats.read);
 app.put('/projects/:id/days/:date', days.update);
 app.post('/projects/:id/days/:date/tasks', tasks.create);
 
