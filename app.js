@@ -4,6 +4,7 @@ var express = require('express')
   , days = require('./routes/days')
   , projects = require('./routes/projects')
   , stats = require('./routes/stats')
+  , breaks = require('./routes/breaks')
   , tasks = require('./routes/tasks');
 
 var app = express();
@@ -24,6 +25,7 @@ app.put('/projects/:id', projects.create);
 app.get('/projects/:id/days/:date', stats.read);
 app.put('/projects/:id/days/:date', days.update);
 app.post('/projects/:id/days/:date/tasks', tasks.create);
+app.post('/projects/:id/days/:date/breaks', breaks.create);
 
 // Days Stats Log Users
 
