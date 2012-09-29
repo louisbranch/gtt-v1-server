@@ -1,5 +1,6 @@
 var express = require('express')
   , http = require('http')
+  , auth = require('./lib/auth')
   , routes = require('./routes')
   , days = require('./routes/days')
   , projects = require('./routes/projects')
@@ -21,9 +22,25 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.put('/projects/:id', projects.create);
-app.get('/projects/:id/days/:date', stats.read);
-app.put('/projects/:id/days/:date', days.update);
+app.param('id', function(req, res, next, id){
+  var token = req.query.token;
+  if (token) {
+    auth.validateCredentials(id, token, function(err, success){
+      if (err) {
+        res.status(400);
+        return res.send(err);
+      }
+      next();
+    });
+  } else {
+    res.status(400);
+    res.send('Missing token!')
+  }
+});
+
+app.post( '/projects', projects.create);
+app.get( '/projects/:id/days/:date', stats.read);
+app.put( '/projects/:id/days/:date', days.update);
 app.post('/projects/:id/days/:date/tasks', tasks.create);
 app.post('/projects/:id/days/:date/breaks', breaks.create);
 
