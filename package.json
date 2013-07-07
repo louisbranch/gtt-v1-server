@@ -1,12 +1,33 @@
 {
   "name": "gttserver",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
+  "main" : "app.js",
   "scripts": {
-    "start": "node app"
+    "start": "node app",
+    "test" : "mocha --recursive"
   },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/luizbranco/gttserver"
+  },
+  "author": {
+    "name": "Luiz Branco",
+    "email": "me@luizbranco.com",
+    "url": "http://github.com/luizbranco"
+  },
+  "license": "MIT",
   "dependencies": {
     "express": "3.0.0rc4",
     "nano": "3.3.2"
+  },
+  "devDependencies": {
+    "mocha": "~1.12.0",
+    "grunt-exec": "~0.4.2",
+    "grunt-regarde": "~0.1.1",
+    "sinon": "~1.7.3",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-cli": "~0.1.9",
+    "grunt": "~0.4.1"
   }
 }
