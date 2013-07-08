@@ -10,6 +10,10 @@ var express = require('express')
 
 var app = express();
 
+module.exports = {
+  start: start
+};
+
 app.configure(function(){
   app.set('port', process.env.PORT || 9393);
   app.use(express.logger('dev'));
@@ -38,12 +42,17 @@ app.param('id', function(req, res, next, id){
   }
 });
 
-app.post( '/projects', projects.create);
+app.post('/projects', projects.create);
 app.get( '/projects/:id/days/:date', stats.outputTime);
 app.put( '/projects/:id/days/:date', days.update);
 app.post('/projects/:id/days/:date/tasks', tasks.create);
 app.post('/projects/:id/days/:date/breaks', breaks.create);
 
-// Days Stats Log Users
+function start(port) {
+  port = port || app.get('port');
+  return http.createServer(app).listen(port);
+}
 
-http.createServer(app).listen(app.get('port'));
+if (require.main === module) {
+  start();
+}
