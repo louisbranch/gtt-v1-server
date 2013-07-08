@@ -43,8 +43,9 @@ app.param('id', function(req, res, next, id){
 });
 
 app.post('/projects', projects.create);
-app.get( '/projects/:id/days/:date', stats.outputTime);
-app.put( '/projects/:id/days/:date', days.update);
+app.del('/projects/:id', projects.destroy);
+app.get('/projects/:id/days/:date', stats.outputTime);
+app.put('/projects/:id/days/:date', days.update);
 app.post('/projects/:id/days/:date/tasks', tasks.create);
 app.post('/projects/:id/days/:date/breaks', breaks.create);
 
