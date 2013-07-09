@@ -5,6 +5,8 @@ exports.update = function(req, res){
   , date = req.params.date
   , params = req.body;
 
+  console.log(req.body);
+
   days.updateStatus(id, params, date, function(response){
     res.send(response);
   });
