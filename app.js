@@ -27,6 +27,9 @@ app.configure('development', function(){
 });
 
 app.param('id', function(req, res, next, id){
+  if (req.route.path === '/projects/:id' && req.method === 'PUT') {
+    return next();
+  }
   var token = req.query.token;
   if (token) {
     auth.validateCredentials(id, token, function(err, success){
@@ -42,7 +45,7 @@ app.param('id', function(req, res, next, id){
   }
 });
 
-app.post('/projects', projects.create);
+app.put('/projects/:id', projects.create);
 app.del('/projects/:id', projects.destroy);
 app.get('/projects/:id/days/:date', stats.outputTime);
 app.put('/projects/:id/days/:date', days.update);
