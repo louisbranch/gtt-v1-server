@@ -19,4 +19,72 @@ describe('Days integration test', function(){
     });
   });
 
+  it('adds a commit to a day', function(done){
+    var params = {
+      message: 'A new commit!',
+      type: 'commit',
+      branch: 'master',
+      end: '10:00'
+    };
+
+    helper.request({path: '/days/' + date + '/tasks', method: 'POST', data: params}, function (res) {
+      assert(res.ok);
+      done();
+    });
+
+  });
+
+  it('pauses a day', function(done){
+    var params = {
+      type: 'pause',
+      start: '11:00'
+    };
+
+    helper.request({path: '/days/' + date + '/breaks', method: 'POST', data: params}, function (res) {
+      assert(res.ok);
+      done();
+    });
+  });
+
+  it('resumes a day', function(done){
+    var params = {
+      type: 'resume',
+      end: '11:30'
+    };
+
+    helper.request({path: '/days/' + date + '/breaks', method: 'POST', data: params}, function (res) {
+      assert(res.ok);
+      done();
+    });
+  });
+
+  it('adds a task to a day', function(done){
+    var params = {
+      message: 'A new task!',
+      type: 'task',
+      end: '12:00'
+    };
+
+    helper.request({path: '/days/' + date + '/tasks', method: 'POST', data: params}, function (res) {
+      assert(res.ok);
+      done();
+    });
+
+  });
+
+  it('ends day', function(done){
+    helper.request({path: '/days/' + date, method: 'PUT', data: {end: '12:00'}}, function (res) {
+      assert(res.ok);
+      done();
+    });
+  });
+
+  it('gets time worked', function(done){
+    helper.request({path: '/days/' + date, method: 'GET'}, function (res) {
+      assert(res.ok);
+      assert.equal(res.message, '02:30 hours worked today');
+      done();
+    });
+  });
+
 });
