@@ -1,6 +1,10 @@
 var breaks = require('../lib/breaks');
 
-exports.create = function(req, res){
+module.exports = {
+  create: create
+};
+
+function create(req, res){
   var id = req.params.id
   , date = req.params.date
   , params = req.body;
@@ -8,4 +12,4 @@ exports.create = function(req, res){
   breaks.create(id, params, date, function(response){
     res.send(response);
   });
-};
+}

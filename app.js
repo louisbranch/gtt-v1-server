@@ -1,10 +1,8 @@
 var express = require('express')
   , http = require('http')
   , auth = require('./lib/auth')
-  , routes = require('./routes')
   , days = require('./routes/days')
   , projects = require('./routes/projects')
-  , stats = require('./routes/stats')
   , breaks = require('./routes/breaks')
   , tasks = require('./routes/tasks');
 
@@ -32,7 +30,7 @@ app.param('id', function(req, res, next, id){
   }
   var token = req.query.token;
   if (token) {
-    auth.validateCredentials(id, token, function(err, success){
+    auth.validate(id, token, function(err, success){
       if (err) {
         res.status(400);
         return res.send(err);
@@ -47,7 +45,7 @@ app.param('id', function(req, res, next, id){
 
 app.put('/projects/:id', projects.create);
 app.del('/projects/:id', projects.destroy);
-app.get('/projects/:id/days/:date', stats.outputTime);
+app.get('/projects/:id/days/:date', days.show);
 app.put('/projects/:id/days/:date', days.update);
 app.post('/projects/:id/days/:date/tasks', tasks.create);
 app.post('/projects/:id/days/:date/breaks', breaks.create);
