@@ -11,7 +11,7 @@ function update(req, res){
   , date = req.params.date
   , params = req.body;
 
-  days.updateStatus(id, params, date, function(response){
+  days.update(id, params, date, function(response){
     res.send(response);
   });
 }
@@ -20,7 +20,7 @@ function show(req, res){
   var id = req.params.id
   , date = req.params.date;
 
-  stats.outputTime(id, date, function(response){
+  stats.timeWorked(id, date, function(response){
     res.send(response);
   });
 }
