@@ -14,7 +14,7 @@ module.exports = {
 
 app.configure(function(){
   app.set('port', process.env.PORT || 9393);
-  app.use(express.logger('dev'));
+  //app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);

@@ -1,5 +1,4 @@
 var days = require('../lib/days');
-var stats = require('../lib/stats');
 
 module.exports = {
   update: update,
@@ -20,7 +19,7 @@ function show(req, res){
   var id = req.params.id
   , date = req.params.date;
 
-  stats.timeWorked(id, date, function(response){
+  days.timeWorked(id, date, function(response){
     res.send(response);
   });
 }
