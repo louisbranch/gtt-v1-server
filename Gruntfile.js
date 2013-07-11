@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     regarde: {
       app: {
-        files: ['lib/**/*.js', 'routes/**/*.js', 'test/**/*.js'],
+        files: ['lib/**/*.js', 'routes/**/*.js', 'test/**/*.js', 'app.js'],
         tasks: ['exec']
       }
     },

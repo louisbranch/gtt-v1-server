@@ -82,7 +82,7 @@ describe('Days integration test', function(){
   it('gets time worked', function(done){
     helper.request({path: '/days/' + date, method: 'GET'}, function (res) {
       assert(res.ok);
-      assert.equal(res.message, 150);
+      assert.equal(res.message, "02:30");
       done();
     });
   });
